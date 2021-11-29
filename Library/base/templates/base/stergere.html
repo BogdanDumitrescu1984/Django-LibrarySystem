@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <p> Chiar vrei sa stergi {{obj.nume}} din lista ?</p>
+
+    <a href = "{{request.META.HTTP_REFERER}}"> Inapoi </a>
+    <input type="submit" value="Confirm" />
+
+</form>
+
+{% endblock %}

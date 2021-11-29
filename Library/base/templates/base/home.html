@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <style>
+        .home-container{
+            display: grid;
+            grid-template-columns: 25em auto;
+        }
+        .vizualizare {
+            width: 20em;
+            height: 20em;
+            border: 1px solid blue;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+        .adaugare {
+            width: 20em;
+            height: 20em;
+            border: 1px solid blue;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+
+    </style>
+
+    <div class="home-container">
+        <div class="vizualizare">
+            <h1><a href="/vizualizare"> Vizualizare carti </a></h1>
+        </div>
+        <div class="adaugare">
+            <h1><a href="/adaugare"> Adaugare carti </a></h1>
+        </div>
+    </div>
+
+{% endblock %}

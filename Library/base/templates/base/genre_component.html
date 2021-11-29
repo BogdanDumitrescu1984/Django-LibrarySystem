@@ -1,0 +1,13 @@
+<h3> Genuri Carti Disponibile</h3>
+<hr>
+
+<div>
+    <a href="{% url 'vizualizare' %}?q={{genre.name}}"> All </a>
+</div>
+
+{% for genre in genres %}
+    <div>
+        <a href="{% url 'vizualizare' %}?q={{genre.name}}">{{genre.name}}</a>
+    </div>
+{%endfor%}
+<hr>

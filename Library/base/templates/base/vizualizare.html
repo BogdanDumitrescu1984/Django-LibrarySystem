@@ -1,0 +1,68 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+    <style>
+        .home-container{
+            display:grid;
+            grid-template-columns: 0.7fr 0.1fr 5fr;
+        }
+    </style>
+
+    <form method="GET" action="{% url 'vizualizare' %}">
+        <input type="text" name="q" placeholder="Cautare carti ..." />
+    </form>
+
+    <div class="home-container">
+        <div>
+            {% include 'base/genre_component.html' %}
+        </div>
+        <div>
+
+        </div>
+        <div>
+        {% for carte in carti %}
+            <div>
+                <div class="start-letter">
+                    <h2>{{carte.nume.0}}</h2>
+                    <hr>
+                </div>
+                <div class="nume-carte">
+                    <h3> {{carte.nume}} -- {{carte.autor}} </h3>
+                </div>
+                <div class="adauga-volum">
+                    {% if carte.nr_volume > 1 %}
+                        {%if carte.limba == "Engleza"%}
+                            <p> Serie's Volumes </p>
+                            <a href="{% url 'adaugare_volum' %}"> Add Volume </a>
+                        {%else%}
+                            <p> Volume din Serie </p>
+                            <a href="{% url 'adaugare_volum' %}"> Adauga Volume </a>
+                        {%endif%}
+                    {%endif%}
+                </div>
+                <div class="volume-carte">
+                    {%for volum in volumes%}
+                        {% if volum.carte.nume == carte.nume %}
+                            <p> {{volum.numar}} -- {{volum.nume}} </p>
+                            {% if volum.carte.limba == "Engleza" %}
+                            <a href="{% url 'stergere_volum' volum.id %}"> Delete the Volume </a>
+                            {%else%}
+                            <a href="{% url 'stergere_volum' volum.id %}"> Stergere Volum </a>
+                            {%endif%}
+                        {%endif%}
+
+                    {%endfor%}
+                </div>
+                <div class="adauga-sterge-links">
+                    <h5><a href = "{% url 'actualizare-carte' carte.id %}"> Actualizare </a></h5>
+                    <h5><a href = "{% url 'stergere-carte' carte.id %}" > Stergere </a></h5>
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{%if "actualizare" in request.path or "stergere" in request.path or "adaugare_volum" in request.path or "stergere-volum" in request.path%}
+
+    <a href="{% url 'vizualizare' %}"><h1>VIZUALIZARE</h1></a>
+    <hr>
+{%else%}
+    <a href="/"> <h1> ACASA </h1> </a>
+    <hr>
+{%endif%}
